@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe Actor do
-  let(:actor) { Actor.create(first_name: "MATT", last_name: "SROUFE") }
+  let!(:actor) { FactoryGirl.create(:actor) }
+  let!(:actor_info) { actor.create_actor_info(first_name: actor.first_name, last_name: actor.last_name) }
 
   it "is valid with a first name" do
     expect(actor).to be_valid
@@ -9,7 +10,7 @@ describe Actor do
 
   describe "actor_info" do
     it "returns the actor info for the actor" do
-      expect(actor.actor_info).to eq([])
+      expect(actor.actor_info).to eq(actor_info)
     end
   end
 
