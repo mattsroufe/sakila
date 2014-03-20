@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe Film do
+  let(:film) { FactoryGirl.build(:film) }
+
   it "is valid with a title and language_id" do
-    expect(Film.create!(title: "The Big Lebowsi", language_id: 1)).to be_valid
+    expect(film).to be_valid
   end
 end
