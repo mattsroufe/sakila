@@ -2,6 +2,6 @@
 
 <h1><%= @actor.full_name %></h1>
 
-<% @actor.actor_info.film_info.split(';').each do |film| %>
-  <p><%= film %></p>
+<% @actor.films.each do |film| %>
+  <p><%= film.to_s %></p>
 <% end %>
