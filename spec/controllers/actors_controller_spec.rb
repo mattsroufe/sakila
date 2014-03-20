@@ -13,4 +13,18 @@ describe ActorsController do
       expect(assigns(:actors)).to match_array(Actor.all)
     end
   end
+
+  describe "#show" do
+    let(:actor) { Actor.create(first_name: "Matt", last_name: "Sroufe") }
+
+    it "renders the show view" do
+      get :show, :id => actor
+      expect(response).to render_template('show')
+    end
+
+    it "assigns the actor as @actor" do
+      get :show, :id => actor
+      expect(assigns[:actor]).to eq(actor)
+    end
+  end
 end
