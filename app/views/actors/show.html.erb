@@ -3,5 +3,5 @@
 <h1><%= @actor.full_name %></h1>
 
 <% @actor.films.each do |film| %>
-  <p><%= film.to_s %></p>
+  <p><%= link_to film.to_s, film_path(film) %></p>
 <% end %>

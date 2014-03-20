@@ -1,0 +1,12 @@
+<%= link_to "Home", root_path %>
+
+<br><br>
+
+<table>
+  <% @film.attributes.each do |key, value| %>
+    <tr>
+      <td><%= label_tag(key) %></td>
+      <td><%= value %></td>
+    </tr>
+  <% end %>
+</table>

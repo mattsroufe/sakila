@@ -6,6 +6,7 @@ Sakila::Application.routes.draw do
   root 'actors#index'
 
   resources :actors
+  resources :films
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
