@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :rental do
+    id           1
     rental_date  Date.new(2012,2,12)
     inventory_id 1
     customer_id  1
