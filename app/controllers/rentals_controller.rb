@@ -1,7 +1,7 @@
 class RentalsController < ApplicationController
 
   def index
-    @rentals = Rental.limit(10)
+    @rentals = Rental.includes([:customer, :film]).limit(10)
   end
 
   def show

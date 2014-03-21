@@ -7,7 +7,7 @@ class Film < ActiveRecord::Base
   has_one :category, :through => :film_category
 
   def to_s
-    [release_year, title.titleize].join(' ')
+    title.titleize
   end
 
   private
