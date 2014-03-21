@@ -1,4 +1,11 @@
 class Store < ActiveRecord::Base
   has_many :inventories
-  has_many :films, :through => :inventories
+
+  def films_in_inventory
+    inventories.map(&:film)
+  end
+
+  def rentals
+    inventories.map(&:rental)
+  end
 end
