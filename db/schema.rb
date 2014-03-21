@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321012627) do
+ActiveRecord::Schema.define(version: 20140321012628) do
 
   create_table "actor", primary_key: "actor_id", force: true do |t|
-    t.string    "first_name",  limit: 45, null: false
-    t.string    "last_name",   limit: 45, null: false
-    t.timestamp "last_update",            null: false
+    t.string    "first_name", limit: 45, null: false
+    t.string    "last_name",  limit: 45, null: false
+    t.timestamp "updated_at",            null: false
   end
 
   add_index "actor", ["last_name"], name: "idx_actor_last_name", using: :btree
