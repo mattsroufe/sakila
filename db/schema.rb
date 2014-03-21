@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321012633) do
+ActiveRecord::Schema.define(version: 20140321012634) do
 
   create_table "actor", primary_key: "actor_id", force: true do |t|
     t.string    "first_name", limit: 45, null: false
@@ -21,17 +21,17 @@ ActiveRecord::Schema.define(version: 20140321012633) do
 
   add_index "actor", ["last_name"], name: "idx_actor_last_name", using: :btree
 
-  create_table "address", primary_key: "address_id", force: true do |t|
+  create_table "addresses", force: true do |t|
     t.string    "address",     limit: 50, null: false
     t.string    "address2",    limit: 50
     t.string    "district",    limit: 20, null: false
     t.integer   "city_id",     limit: 2,  null: false
     t.string    "postal_code", limit: 10
     t.string    "phone",       limit: 20, null: false
-    t.timestamp "last_update",            null: false
+    t.timestamp "updated_at",             null: false
   end
 
-  add_index "address", ["city_id"], name: "idx_fk_city_id", using: :btree
+  add_index "addresses", ["city_id"], name: "idx_fk_city_id", using: :btree
 
   create_table "category", primary_key: "category_id", force: true do |t|
     t.string    "name",       limit: 25, null: false
