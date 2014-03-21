@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321012632) do
+ActiveRecord::Schema.define(version: 20140321012633) do
 
   create_table "actor", primary_key: "actor_id", force: true do |t|
     t.string    "first_name", limit: 45, null: false
@@ -66,25 +66,6 @@ ActiveRecord::Schema.define(version: 20140321012632) do
   add_index "customers", ["last_name"], name: "idx_last_name", using: :btree
   add_index "customers", ["store_id"], name: "idx_fk_store_id", using: :btree
 
-  create_table "film", primary_key: "film_id", force: true do |t|
-    t.string    "title",                                                                  null: false
-    t.text      "description"
-    t.integer   "release_year"
-    t.integer   "language_id",          limit: 1,                                         null: false
-    t.integer   "original_language_id", limit: 1
-    t.integer   "rental_duration",      limit: 1,                         default: 3,     null: false
-    t.decimal   "rental_rate",                    precision: 4, scale: 2, default: 4.99,  null: false
-    t.integer   "length",               limit: 2
-    t.decimal   "replacement_cost",               precision: 5, scale: 2, default: 19.99, null: false
-    t.string    "rating",               limit: 5,                         default: "G"
-    t.string    "special_features",     limit: 0
-    t.timestamp "last_update",                                                            null: false
-  end
-
-  add_index "film", ["language_id"], name: "idx_fk_language_id", using: :btree
-  add_index "film", ["original_language_id"], name: "idx_fk_original_language_id", using: :btree
-  add_index "film", ["title"], name: "idx_title", using: :btree
-
   create_table "film_actor", id: false, force: true do |t|
     t.integer   "actor_id",    limit: 2, null: false
     t.integer   "film_id",     limit: 2, null: false
@@ -107,6 +88,25 @@ ActiveRecord::Schema.define(version: 20140321012632) do
   end
 
   add_index "film_text", ["title", "description"], name: "idx_title_description", type: :fulltext
+
+  create_table "films", force: true do |t|
+    t.string    "title",                                                                  null: false
+    t.text      "description"
+    t.integer   "release_year"
+    t.integer   "language_id",          limit: 1,                                         null: false
+    t.integer   "original_language_id", limit: 1
+    t.integer   "rental_duration",      limit: 1,                         default: 3,     null: false
+    t.decimal   "rental_rate",                    precision: 4, scale: 2, default: 4.99,  null: false
+    t.integer   "length",               limit: 2
+    t.decimal   "replacement_cost",               precision: 5, scale: 2, default: 19.99, null: false
+    t.string    "rating",               limit: 5,                         default: "G"
+    t.string    "special_features",     limit: 0
+    t.timestamp "updated_at",                                                             null: false
+  end
+
+  add_index "films", ["language_id"], name: "idx_fk_language_id", using: :btree
+  add_index "films", ["original_language_id"], name: "idx_fk_original_language_id", using: :btree
+  add_index "films", ["title"], name: "idx_title", using: :btree
 
   create_table "inventories", force: true do |t|
     t.integer   "film_id",    limit: 2, null: false
