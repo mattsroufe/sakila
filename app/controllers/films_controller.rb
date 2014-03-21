@@ -1,7 +1,7 @@
 class FilmsController < ApplicationController
 
   def index
-    @films = Film.all
+    @categorised_films = Category.includes(:films)
   end
 
   def show
