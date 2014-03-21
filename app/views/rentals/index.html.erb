@@ -1,5 +1,5 @@
 <h1>Rentals</h1>
 
 <% @rentals.each do |rental| %>
-  <p><%= rental.attributes %></p>
+  <p><%= link_to rental.id, rental_path(rental) %>&emsp;<%= rental.customer_full_name %></p>
 <% end %>
