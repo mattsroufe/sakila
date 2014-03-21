@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Rental do
   let!(:film) { FactoryGirl.create(:film) }
-  let!(:inventory) { Inventory.create(film: film, store_id: 1) }
+  let!(:inventory) { film.create_inventory(store_id: 1) }
   let!(:rental) { inventory.create_rental!(customer_id: 1, rental_date: Date.new(2012,2,12), staff_id: 1) }
 
   it "is valid with a rental date, customer_id, inventory_id, and staff_id" do
