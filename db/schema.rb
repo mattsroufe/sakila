@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321012629) do
+ActiveRecord::Schema.define(version: 20140321012630) do
 
   create_table "actor", primary_key: "actor_id", force: true do |t|
     t.string    "first_name", limit: 45, null: false
@@ -51,32 +51,20 @@ ActiveRecord::Schema.define(version: 20140321012629) do
     t.timestamp "last_update",            null: false
   end
 
-  create_table "customer", primary_key: "customer_id", force: true do |t|
-    t.integer   "store_id",    limit: 1,                 null: false
-    t.string    "first_name",  limit: 45,                null: false
-    t.string    "last_name",   limit: 45,                null: false
-    t.string    "email",       limit: 50
-    t.integer   "address_id",  limit: 2,                 null: false
-    t.boolean   "active",                 default: true, null: false
-    t.datetime  "create_date",                           null: false
-    t.timestamp "last_update",                           null: false
+  create_table "customers", force: true do |t|
+    t.integer   "store_id",   limit: 1,                 null: false
+    t.string    "first_name", limit: 45,                null: false
+    t.string    "last_name",  limit: 45,                null: false
+    t.string    "email",      limit: 50
+    t.integer   "address_id", limit: 2,                 null: false
+    t.boolean   "active",                default: true, null: false
+    t.datetime  "created_at",                           null: false
+    t.timestamp "updated_at",                           null: false
   end
 
-  add_index "customer", ["address_id"], name: "idx_fk_address_id", using: :btree
-  add_index "customer", ["last_name"], name: "idx_last_name", using: :btree
-  add_index "customer", ["store_id"], name: "idx_fk_store_id", using: :btree
-
-  create_table "customer_list", id: false, force: true do |t|
-    t.integer "ID",       limit: 2,  default: 0,  null: false
-    t.string  "name",     limit: 91
-    t.string  "address",  limit: 50,              null: false
-    t.string  "zip code", limit: 10
-    t.string  "phone",    limit: 20,              null: false
-    t.string  "city",     limit: 50,              null: false
-    t.string  "country",  limit: 50,              null: false
-    t.string  "notes",    limit: 6,  default: "", null: false
-    t.integer "SID",      limit: 1,               null: false
-  end
+  add_index "customers", ["address_id"], name: "idx_fk_address_id", using: :btree
+  add_index "customers", ["last_name"], name: "idx_last_name", using: :btree
+  add_index "customers", ["store_id"], name: "idx_fk_store_id", using: :btree
 
   create_table "film", primary_key: "film_id", force: true do |t|
     t.string    "title",                                                                  null: false
