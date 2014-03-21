@@ -15,4 +15,13 @@ describe Film do
       expect(film.actors).to match_array([actor])
     end
   end
+
+  describe "#categories" do
+    let!(:category) { FactoryGirl.create(:category) }
+
+    it "returns the film's categories" do
+      film.category = category
+      expect(film.category).to eq(category)
+    end
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321012626) do
+ActiveRecord::Schema.define(version: 20140321012627) do
 
   create_table "actor", primary_key: "actor_id", force: true do |t|
     t.string    "first_name",  limit: 45, null: false
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 20140321012626) do
   create_table "film_category", id: false, force: true do |t|
     t.integer   "film_id",     limit: 2, null: false
     t.integer   "category_id", limit: 1, null: false
-    t.timestamp "last_update",           null: false
+    t.timestamp "updated_at",            null: false
   end
 
   add_index "film_category", ["category_id"], name: "fk_film_category_category", using: :btree

@@ -3,6 +3,8 @@ class Film < ActiveRecord::Base
   before_save :set_last_updated_at
   has_many :film_actors
   has_many :actors, :through => :film_actors
+  has_one :film_category
+  has_one :category, :through => :film_category
 
   def to_s
     [release_year, title.titleize].join(' ')
