@@ -12,4 +12,13 @@ describe Customer do
       expect(customer.full_name).to eq("Matt Sroufe")
     end
   end
+
+  describe "#rentals" do
+    let!(:rental) { FactoryGirl.create(:rental) }
+
+    it "returns the cusomters rentals" do
+      customer.rentals << rental
+      expect(customer.rentals).to match_array([rental])
+    end
+  end
 end
