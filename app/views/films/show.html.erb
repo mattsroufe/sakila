@@ -9,8 +9,16 @@
       <td><%= value %></td>
     </tr>
   <% end %>
+  <tr>
+    <td><%= label_tag :actors %></td>
+    <td>
+    <% @film.actors.each do |actor| %>
+      <%= link_to actor.full_name, actor_path(actor) %>&emsp;
+    <% end %>
+    </td>
+  </tr>
 </table>
 
 <br>
 
-<%= link_to 'Back', :back %>
+<%= link_to 'Back to films', films_path %>
