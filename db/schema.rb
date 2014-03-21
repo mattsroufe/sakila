@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321012631) do
+ActiveRecord::Schema.define(version: 20140321012632) do
 
   create_table "actor", primary_key: "actor_id", force: true do |t|
     t.string    "first_name", limit: 45, null: false
@@ -165,13 +165,13 @@ ActiveRecord::Schema.define(version: 20140321012631) do
   add_index "staff", ["address_id"], name: "idx_fk_address_id", using: :btree
   add_index "staff", ["store_id"], name: "idx_fk_store_id", using: :btree
 
-  create_table "store", primary_key: "store_id", force: true do |t|
+  create_table "stores", force: true do |t|
     t.integer   "manager_staff_id", limit: 1, null: false
     t.integer   "address_id",       limit: 2, null: false
-    t.timestamp "last_update",                null: false
+    t.timestamp "updated_at",                 null: false
   end
 
-  add_index "store", ["address_id"], name: "idx_fk_address_id", using: :btree
-  add_index "store", ["manager_staff_id"], name: "idx_unique_manager", unique: true, using: :btree
+  add_index "stores", ["address_id"], name: "idx_fk_address_id", using: :btree
+  add_index "stores", ["manager_staff_id"], name: "idx_unique_manager", unique: true, using: :btree
 
 end
