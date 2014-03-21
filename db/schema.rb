@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321012628) do
+ActiveRecord::Schema.define(version: 20140321012629) do
 
   create_table "actor", primary_key: "actor_id", force: true do |t|
     t.string    "first_name", limit: 45, null: false
@@ -169,30 +169,19 @@ ActiveRecord::Schema.define(version: 20140321012628) do
   add_index "payment", ["rental_id"], name: "fk_payment_rental", using: :btree
   add_index "payment", ["staff_id"], name: "idx_fk_staff_id", using: :btree
 
-  create_table "rental", primary_key: "rental_id", force: true do |t|
+  create_table "rentals", force: true do |t|
     t.datetime  "rental_date",            null: false
     t.integer   "inventory_id", limit: 3, null: false
     t.integer   "customer_id",  limit: 2, null: false
     t.datetime  "return_date"
     t.integer   "staff_id",     limit: 1, null: false
-    t.timestamp "last_update",            null: false
+    t.timestamp "updated_at",             null: false
   end
 
-  add_index "rental", ["customer_id"], name: "idx_fk_customer_id", using: :btree
-  add_index "rental", ["inventory_id"], name: "idx_fk_inventory_id", using: :btree
-  add_index "rental", ["rental_date", "inventory_id", "customer_id"], name: "rental_date", unique: true, using: :btree
-  add_index "rental", ["staff_id"], name: "idx_fk_staff_id", using: :btree
-
-  create_table "sales_by_film_category", id: false, force: true do |t|
-    t.string  "category",    limit: 25,                          null: false
-    t.decimal "total_sales",            precision: 27, scale: 2
-  end
-
-  create_table "sales_by_store", id: false, force: true do |t|
-    t.string  "store",       limit: 101
-    t.string  "manager",     limit: 91
-    t.decimal "total_sales",             precision: 27, scale: 2
-  end
+  add_index "rentals", ["customer_id"], name: "idx_fk_customer_id", using: :btree
+  add_index "rentals", ["inventory_id"], name: "idx_fk_inventory_id", using: :btree
+  add_index "rentals", ["rental_date", "inventory_id", "customer_id"], name: "rental_date", unique: true, using: :btree
+  add_index "rentals", ["staff_id"], name: "idx_fk_staff_id", using: :btree
 
   create_table "staff", primary_key: "staff_id", force: true do |t|
     t.string    "first_name",  limit: 45,                null: false
