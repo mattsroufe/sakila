@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321012630) do
+ActiveRecord::Schema.define(version: 20140321012631) do
 
   create_table "actor", primary_key: "actor_id", force: true do |t|
     t.string    "first_name", limit: 45, null: false
@@ -108,14 +108,14 @@ ActiveRecord::Schema.define(version: 20140321012630) do
 
   add_index "film_text", ["title", "description"], name: "idx_title_description", type: :fulltext
 
-  create_table "inventory", primary_key: "inventory_id", force: true do |t|
-    t.integer   "film_id",     limit: 2, null: false
-    t.integer   "store_id",    limit: 1, null: false
-    t.timestamp "last_update",           null: false
+  create_table "inventories", force: true do |t|
+    t.integer   "film_id",    limit: 2, null: false
+    t.integer   "store_id",   limit: 1, null: false
+    t.timestamp "updated_at",           null: false
   end
 
-  add_index "inventory", ["film_id"], name: "idx_fk_film_id", using: :btree
-  add_index "inventory", ["store_id", "film_id"], name: "idx_store_id_film_id", using: :btree
+  add_index "inventories", ["film_id"], name: "idx_fk_film_id", using: :btree
+  add_index "inventories", ["store_id", "film_id"], name: "idx_store_id_film_id", using: :btree
 
   create_table "language", primary_key: "language_id", force: true do |t|
     t.string    "name",        limit: 20, null: false
