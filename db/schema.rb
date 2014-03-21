@@ -21,13 +21,6 @@ ActiveRecord::Schema.define(version: 20140321012628) do
 
   add_index "actor", ["last_name"], name: "idx_actor_last_name", using: :btree
 
-  create_table "actor_info", id: false, force: true do |t|
-    t.integer "actor_id",   limit: 2,  default: 0, null: false
-    t.string  "first_name", limit: 45,             null: false
-    t.string  "last_name",  limit: 45,             null: false
-    t.text    "film_info"
-  end
-
   create_table "address", primary_key: "address_id", force: true do |t|
     t.string    "address",     limit: 50, null: false
     t.string    "address2",    limit: 50
