@@ -1,11 +1,24 @@
 <h1><%= @customer.full_name %></h1>
 
 <table>
-  <% @customer.attributes.each do |key, value| %>
+  <thead>
+    <th>Email</th>
+    <th>Address</th>
+    <th>District</th>
+    <th>City</th>
+    <th>Phone</th>
+    <th>Store</th>
+  </thead>
+  <tbody>
     <tr>
-      <td><%= key %></td><td><%= value %></td>
+      <td><%= @customer.email.downcase %></td>
+      <td><%= @customer.address.address %></td>
+      <td><%= @customer.address.district %></td>
+      <td><%= @customer.address.city_id %></td>
+      <td><%= @customer.address.phone %></td>
+      <td><%= @customer.store_id %></td>
     </tr>
-  <% end %>
+  </tbody>
 </table>
 
 <h2>Rental history</h2>
