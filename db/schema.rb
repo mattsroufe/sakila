@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321012635) do
+ActiveRecord::Schema.define(version: 20140321220352) do
 
   create_table "actor", primary_key: "actor_id", force: true do |t|
     t.string    "first_name", limit: 45, null: false
@@ -29,9 +29,11 @@ ActiveRecord::Schema.define(version: 20140321012635) do
     t.string    "postal_code", limit: 10
     t.string    "phone",       limit: 20, null: false
     t.timestamp "updated_at",             null: false
+    t.integer   "country_id",  limit: 2,  null: false
   end
 
   add_index "addresses", ["city_id"], name: "idx_fk_city_id", using: :btree
+  add_index "addresses", ["country_id"], name: "idx_fk_country_id", using: :btree
 
   create_table "category", primary_key: "category_id", force: true do |t|
     t.string    "name",       limit: 25, null: false
@@ -46,9 +48,9 @@ ActiveRecord::Schema.define(version: 20140321012635) do
 
   add_index "cities", ["country_id"], name: "idx_fk_country_id", using: :btree
 
-  create_table "country", primary_key: "country_id", force: true do |t|
-    t.string    "country",     limit: 50, null: false
-    t.timestamp "last_update",            null: false
+  create_table "countries", force: true do |t|
+    t.string    "country",    limit: 50, null: false
+    t.timestamp "updated_at",            null: false
   end
 
   create_table "customers", force: true do |t|

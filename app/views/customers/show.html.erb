@@ -4,7 +4,7 @@
   <thead>
     <th>Email</th>
     <th>Address</th>
-    <th>District</th>
+    <th>Country</th>
     <th>City</th>
     <th>Phone</th>
     <th>Store</th>
@@ -13,8 +13,8 @@
     <tr>
       <td><%= @customer.email.downcase %></td>
       <td><%= @customer.address.address %></td>
-      <td><%= @customer.address.district %></td>
-      <td><%= @customer.address.city_id %></td>
+      <td><%= @customer.address.country_id %></td>
+      <td><%= "#{@customer.address.city.city}, #{@customer.address.district}" %></td>
       <td><%= @customer.address.phone %></td>
       <td><%= @customer.store_id %></td>
     </tr>
