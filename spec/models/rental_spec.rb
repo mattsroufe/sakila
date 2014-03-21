@@ -4,14 +4,19 @@ describe Rental do
   let!(:film) { FactoryGirl.create(:film) }
   let!(:inventory) { film.create_inventory(store_id: 1) }
   let!(:rental) { inventory.create_rental!(customer_id: 1, rental_date: Date.new(2012,2,12), return_date: Date.new(2012,2,13), staff_id: 1) }
+  let(:unreturned_rental) { FactoryGirl.create(:rental) }
 
   it "is valid with a rental date, customer_id, inventory_id, and staff_id" do
     expect(rental).to be_valid
   end
 
-  describe ".unreturned" do
-    let(:unreturned_rental) { FactoryGirl.create(:rental) }
+  describe ".returned" do
+    it "returns rentals where date_returned is nil" do
+      expect(Rental.returned).to match_array([rental])
+    end
+  end
 
+  describe ".unreturned" do
     it "returns rentals where date_returned is nil" do
       expect(Rental.unreturned).to match_array([unreturned_rental])
     end

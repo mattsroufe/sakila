@@ -4,4 +4,5 @@ class Rental < ActiveRecord::Base
   belongs_to :inventory
   has_one :film, :through => :inventory
   scope :unreturned, -> { where(:return_date => nil)}
+  scope :returned, -> { where("return_date IS NOT NULL")}
 end
