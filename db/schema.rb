@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321220352) do
+ActiveRecord::Schema.define(version: 20140321221616) do
 
   create_table "actor", primary_key: "actor_id", force: true do |t|
     t.string    "first_name", limit: 45, null: false
@@ -42,11 +42,8 @@ ActiveRecord::Schema.define(version: 20140321220352) do
 
   create_table "cities", force: true do |t|
     t.string    "city",       limit: 50, null: false
-    t.integer   "country_id", limit: 2,  null: false
     t.timestamp "updated_at",            null: false
   end
-
-  add_index "cities", ["country_id"], name: "idx_fk_country_id", using: :btree
 
   create_table "countries", force: true do |t|
     t.string    "country",    limit: 50, null: false
