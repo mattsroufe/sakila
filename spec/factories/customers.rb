@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :customer do
+    id         1
     store_id   1
     first_name "Matt"
     last_name  "Sroufe"

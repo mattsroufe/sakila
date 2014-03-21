@@ -1,0 +1,9 @@
+<h1><%= @customer.full_name %></h1>
+
+<table>
+  <% @customer.attributes.each do |key, value| %>
+    <tr>
+      <td><%= key %></td><td><%= value %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,22 @@
+<h1>Customers</h1>
+
+<table>
+  <thead>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>Store</th>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.id %></td>
+        <td><%= link_to customer.full_name, customer_path(customer) %></td>
+        <td><%= customer.email.downcase %></td>
+        <td><%= customer.address_id %></td>
+        <td><%= customer.store_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
