@@ -21,4 +21,13 @@ describe Customer do
       expect(customer.rentals).to match_array([rental])
     end
   end
+
+  describe "#address" do
+    let!(:address) { FactoryGirl.create(:address) }
+
+    it "returns the customer's address" do
+      customer.address = address
+      expect(customer.address).to eq(address)
+    end
+  end
 end
