@@ -1,20 +1,57 @@
 <h1>Rentals</h1>
 
+<% if @rentals.unreturned.any? %>
+
+<h3>Unreturned rentals</h3>
+
 <table>
   <thead>
-    <th>Rental date</th>
+    <th>Rental ID</th>
     <th>Title</th>
-    <th>Customer name</th>
-    <th>Return date</th>
+    <th>Customer</th>
+    <th>Rental date</th>
   </thead>
   <tbody>
-    <% @rentals.each do |rental| %>
+    <% @rentals.unreturned.each do |rental| %>
       <tr>
-        <td><%= link_to rental.rental_date.to_formatted_s(:number), rental_path(rental) %></td>
-        <td><%= rental.film %></td>
-        <td><%= rental.customer_full_name %></td>
-        <td><%= rental.return_date %></td>
+        <td><%= link_to rental.to_param, rental_path(rental) %></td>
+        <td><%= link_to rental.film, film_path(rental.film) %></td>
+        <td><%= link_to rental.customer.full_name, customer_path(rental.customer) %></td>
+        <td><%= rental.rental_date.to_formatted_s(:db) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<h3>Returned rentals</h3>
+
+<% end %>
+
+<% if @rentals.returned.any? %>
+
+<table>
+  <thead>
+    <th>Rental ID</th>
+    <th>Title</th>
+    <th>Customer</th>
+    <th>Rental date</th>
+    <th>Return date</th>
+  </thead>
+  <tbody>
+    <% @rentals.returned.each do |rental| %>
+      <tr>
+        <td><%= link_to rental.to_param, rental_path(rental) %></td>
+        <td><%= link_to rental.film, film_path(rental.film) %></td>
+        <td><%= link_to rental.customer.full_name, customer_path(rental.customer) %></td>
+        <td><%= rental.rental_date.to_formatted_s(:db) %></td>
+        <td><%= rental.return_date.to_formatted_s(:db) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% else %>
+
+<p>No rentals found.</p>
+
+<% end %>

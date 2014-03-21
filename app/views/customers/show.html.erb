@@ -13,7 +13,7 @@
     <tr>
       <td><%= @customer.email.downcase %></td>
       <td><%= @customer.address.address %></td>
-      <td><%= @customer.address.country_id %></td>
+      <td><%= @customer.address.country.country %></td>
       <td><%= "#{@customer.address.city.city}, #{@customer.address.district}" %></td>
       <td><%= @customer.address.phone %></td>
       <td><%= @customer.store_id %></td>
@@ -22,6 +22,8 @@
 </table>
 
 <h2>Rental history</h2>
+
+<% if @customer.rentals.unreturned.any? %>
 
 <h3>Unreturned rentals</h3>
 
@@ -44,6 +46,10 @@
 
 <h3>Returned rentals</h3>
 
+<% end %>
+
+<% if @customer.rentals.returned.any? %>
+
 <table>
   <thead>
     <th>Rental ID</th>
@@ -62,3 +68,9 @@
     <% end %>
   </tbody>
 </table>
+
+<% else %>
+
+<p>No rentals found.</p>
+
+<% end %>
