@@ -101,17 +101,6 @@ ActiveRecord::Schema.define(version: 20140321012630) do
 
   add_index "film_category", ["category_id"], name: "fk_film_category_category", using: :btree
 
-  create_table "film_list", id: false, force: true do |t|
-    t.integer "FID",         limit: 2,                          default: 0
-    t.string  "title"
-    t.text    "description"
-    t.string  "category",    limit: 25,                                        null: false
-    t.decimal "price",                  precision: 4, scale: 2, default: 4.99
-    t.integer "length",      limit: 2
-    t.string  "rating",      limit: 5,                          default: "G"
-    t.text    "actors"
-  end
-
   create_table "film_text", primary_key: "film_id", force: true do |t|
     t.string "title",       null: false
     t.text   "description"
@@ -131,17 +120,6 @@ ActiveRecord::Schema.define(version: 20140321012630) do
   create_table "language", primary_key: "language_id", force: true do |t|
     t.string    "name",        limit: 20, null: false
     t.timestamp "last_update",            null: false
-  end
-
-  create_table "nicer_but_slower_film_list", id: false, force: true do |t|
-    t.integer "FID",         limit: 2,                          default: 0
-    t.string  "title"
-    t.text    "description"
-    t.string  "category",    limit: 25,                                        null: false
-    t.decimal "price",                  precision: 4, scale: 2, default: 4.99
-    t.integer "length",      limit: 2
-    t.string  "rating",      limit: 5,                          default: "G"
-    t.text    "actors"
   end
 
   create_table "payment", primary_key: "payment_id", force: true do |t|
