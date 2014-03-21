@@ -210,17 +210,6 @@ ActiveRecord::Schema.define(version: 20140321012628) do
   add_index "staff", ["address_id"], name: "idx_fk_address_id", using: :btree
   add_index "staff", ["store_id"], name: "idx_fk_store_id", using: :btree
 
-  create_table "staff_list", id: false, force: true do |t|
-    t.integer "ID",       limit: 1,  default: 0, null: false
-    t.string  "name",     limit: 91
-    t.string  "address",  limit: 50,             null: false
-    t.string  "zip code", limit: 10
-    t.string  "phone",    limit: 20,             null: false
-    t.string  "city",     limit: 50,             null: false
-    t.string  "country",  limit: 50,             null: false
-    t.integer "SID",      limit: 1,              null: false
-  end
-
   create_table "store", primary_key: "store_id", force: true do |t|
     t.integer   "manager_staff_id", limit: 1, null: false
     t.integer   "address_id",       limit: 2, null: false
