@@ -1,10 +1,10 @@
 class CustomersController < ApplicationController
 
   def index
-    @customers = Customer.all.limit(10)
+    @customers = Customer.limit(10)
   end
 
   def show
-    @customer = Customer.find(params[:id])
+    @customer = Customer.includes(:rentals => :film).find(params[:id])
   end
 end
