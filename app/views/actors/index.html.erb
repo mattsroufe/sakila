@@ -4,14 +4,25 @@
 
 <% if @actors.any? %>
 
-<% @actors.each do |actor| %>
-  <p><%= link_to actor.full_name, actor_path(actor) %></p>
-<% end %>
+<table class="table table-condensed">
+  <thead>
+    <th>Id</th>
+    <th>Name</th>
+  </thead>
+  <tbody>
+    <% @actors.each do |actor| %>
+      <tr>
+        <td><%= actor.id %></td>
+        <td><%= link_to actor.full_name, customer_path(actor) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= paginate @actors, :params => { :letter => params[:letter] } %>
 
 <% else %>
 
-<p>No records founds.</p>
+<p>No records found.</p>
 
 <% end %>

@@ -1,6 +1,6 @@
 <br><br>
 
-<table>
+<table class="table table-condensed">
   <% @film.attributes.each do |key, value| %>
     <tr>
       <td><%= label_tag(key) %></td>
@@ -20,7 +20,5 @@
     <td><%= link_to @film.category.name, '#' %></td>
   </tr>
 </table>
-
-<br>
 
 <%= link_to 'Back to films', films_path %>

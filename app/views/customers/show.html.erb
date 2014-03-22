@@ -1,33 +1,26 @@
-<h1><%= @customer.full_name %></h1>
-
-<table>
-  <thead>
-    <th>Email</th>
-    <th>Address</th>
-    <th>Country</th>
-    <th>City</th>
-    <th>Phone</th>
-    <th>Store</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @customer.email.downcase %></td>
-      <td><%= @customer.address.address %></td>
-      <td><%= @customer.address.country.country %></td>
-      <td><%= "#{@customer.address.city.city}, #{@customer.address.district}" %></td>
-      <td><%= @customer.address.phone %></td>
-      <td><%= @customer.store_id %></td>
-    </tr>
-  </tbody>
-</table>
-
-<h2>Rental history</h2>
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <h1><%= @customer.full_name %></h1>
+      <h3>Rental history</h3>
+    </div>
+    <div class="span3">
+      <address>
+        <%= @customer.address.address %><br>
+        <%= "#{@customer.address.city.city}, #{@customer.address.district}" %><br>
+        <%= @customer.address.country.country %><br>
+        <abbr title="Phone">P:</abbr> <%= @customer.address.phone %><br>
+        <%= mail_to @customer.email.downcase %>
+      </address>
+    </div>
+  </div>
+</div>
 
 <% if @customer.rentals.unreturned.any? %>
 
 <h3>Unreturned rentals</h3>
 
-<table>
+<table class="table table-condensed">
   <thead>
     <th>Rental ID</th>
     <th>Title</th>
@@ -50,7 +43,7 @@
 
 <% if @customer.rentals.returned.any? %>
 
-<table>
+<table class="table table-condensed">
   <thead>
     <th>Rental ID</th>
     <th>Title</th>
