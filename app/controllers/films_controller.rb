@@ -1,7 +1,12 @@
 class FilmsController < ApplicationController
 
   def index
-    @categorised_films = Category.includes(:films)
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @films = @category.films.filter_by('title', params[:letter]).page(params[:page])
+    else
+      @films = Film.filter_by('title', params[:letter]).page(params[:page])
+    end
   end
 
   def show

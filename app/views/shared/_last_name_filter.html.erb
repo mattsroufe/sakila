@@ -1,5 +1,5 @@
 <ul class="nav nav-tabs">
-  <% ('A'..'Z').each do |letter| %>
-    <li class=<%= "active" if params[:letter] == letter %>><%= link_to letter, "#{path}?letter=#{letter}" %></li>
+  <% ('a'..'z').each do |letter| %>
+    <li class=<%= "active" if params[:letter] == letter %>><%= link_to letter.upcase, url_for(params.merge(:letter => letter, :page => 1)), :style => "margin-right:0" %></li>
   <% end %>
 </ul>

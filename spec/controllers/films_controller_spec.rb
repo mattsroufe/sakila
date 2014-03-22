@@ -11,7 +11,7 @@ describe FilmsController do
 
     it "assigns all films to @films" do
       get :index
-      expect(assigns(:categorised_films)).to eq(Category.all)
+      expect(assigns(:films)).to match_array(Film.all)
     end
   end
 

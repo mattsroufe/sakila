@@ -4,8 +4,8 @@ module LastNameFilter
   end
 
   module ClassMethods
-    def filter_by_last_name(letter)
-      where("last_name LIKE ?", "#{letter}%")
+    def filter_by(attribute, letter)
+      where("#{attribute} LIKE ?", "#{letter}%")
     end
   end
 end

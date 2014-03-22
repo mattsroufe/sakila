@@ -16,7 +16,7 @@ describe Film do
     end
   end
 
-  describe "#categories" do
+  describe "#category" do
     let!(:category) { FactoryGirl.create(:category) }
 
     it "returns the film's categories" do

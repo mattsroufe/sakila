@@ -1,10 +1,50 @@
-<h1>Films</h1>
+<div class="container">
 
-<% @categorised_films.each do |category| %>
-  <h2><%= category.name %></h2>
-  <% category.films.each do |film| %>
-    <%= link_to film.to_s, film_path(film) %>&emsp;
-  <% end %>
-<% end %>
+  <div class="row">
+    <div class="span10 offset2">
+      <h1>Films<%= " - #{@category.name}" if @category %></h1>
+    </div>
+  </div>
 
-<%= link_to 'Back', :back %>
+  <div class="row">
+    <div class="span2">
+      <div class="well">
+      <ul class="nav nav-list">
+        <li class="nav-header">Categories</li>
+          <li class=<%= "active" unless @category %>><%= link_to "All", films_path %></li>
+        <% Category.all.each do |category| %>
+          <li class=<%= "active" if category.try(:name) == @category.try(:name) %>><%= link_to category.name, films_path(:category_id => category.to_param) %></li>
+        <% end %>
+      </ul>
+      </div>
+    </div>
+    <div class="span10">
+      <%= render :partial => 'shared/last_name_filter', :locals => { :path => films_path } %>
+
+      <% if @films.any? %>
+
+      <table class="table table-condensed">
+        <thead>
+          <th>Id</th>
+          <th>Name</th>
+        </thead>
+        <tbody>
+          <% @films.each do |film| %>
+            <tr>
+              <td><%= film.id %></td>
+              <td><%= link_to film.to_s, film_path(film) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= paginate @films %>
+
+      <% else %>
+
+      <p>No records found.</p>
+
+      <% end %>
+    </div>
+  </div>
+</div>
