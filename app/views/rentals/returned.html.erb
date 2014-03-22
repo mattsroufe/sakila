@@ -1,33 +1,8 @@
 <h1>Rentals</h1>
 
-<% if @rentals.unreturned.any? %>
+<p><%= link_to "Unreturned rentals", unreturned_rentals_path %> | Returned rentals</p>
 
-<h3>Unreturned rentals</h3>
-
-<table>
-  <thead>
-    <th>Rental ID</th>
-    <th>Title</th>
-    <th>Customer</th>
-    <th>Rental date</th>
-  </thead>
-  <tbody>
-    <% @rentals.unreturned.each do |rental| %>
-      <tr>
-        <td><%= link_to rental.to_param, rental_path(rental) %></td>
-        <td><%= link_to rental.film, film_path(rental.film) %></td>
-        <td><%= link_to rental.customer.full_name, customer_path(rental.customer) %></td>
-        <td><%= rental.rental_date.to_formatted_s(:db) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<h3>Returned rentals</h3>
-
-<% end %>
-
-<% if @rentals.returned.any? %>
+<% if @rentals.any? %>
 
 <table>
   <thead>
@@ -49,6 +24,10 @@
     <% end %>
   </tbody>
 </table>
+
+<br>
+
+<%= paginate @rentals %>
 
 <% else %>
 

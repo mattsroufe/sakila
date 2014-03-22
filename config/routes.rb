@@ -7,7 +7,12 @@ Sakila::Application.routes.draw do
 
   resources :actors
   resources :films
-  resources :rentals
+  resources :rentals do
+    collection do
+      get :returned
+      get :unreturned
+    end
+  end
   resources :customers
 
   # Example of regular route:

@@ -2,16 +2,29 @@ require 'spec_helper'
 
 describe RentalsController do
   let!(:rental) { FactoryGirl.create(:rental) }
+  let!(:unreturned_rental) { FactoryGirl.create(:unreturned_rental) }
 
-  describe "#index" do
-    it "renders the index view" do
-      get :index
-      expect(response).to render_template('index')
+  describe "#returned" do
+    it "renders the returned view" do
+      get :returned
+      expect(response).to render_template('returned')
     end
 
     it "assigns all rentals to @rentals" do
-      get :index
-      expect(assigns(:rentals)).to match_array(Rental.all)
+      get :returned
+      expect(assigns(:rentals)).to match_array(Rental.returned)
+    end
+  end
+
+  describe "#unreturned" do
+    it "renders the unreturned view" do
+      get :unreturned
+      expect(response).to render_template('unreturned')
+    end
+
+    it "assigns all rentals to @rentals" do
+      get :unreturned
+      expect(assigns(:rentals)).to match_array(Rental.unreturned)
     end
   end
 
