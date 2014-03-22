@@ -32,6 +32,8 @@
     <% end %>
   </tbody>
 </table>
+<br>
+<%= paginate @customers, :params => { :letter => params[:letter] } %>
 
 <% else %>
 

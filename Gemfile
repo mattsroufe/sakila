@@ -23,6 +23,7 @@ gem 'jquery-rails'
 gem 'rspec-rails'
 gem 'factory_girl_rails'
 gem 'byebug'
+gem 'kaminari'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
