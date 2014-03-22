@@ -7,6 +7,15 @@ describe Customer do
     expect(customer).to be_valid
   end
 
+  describe ".filter_by_last_name" do
+    let!(:bob_knight) { FactoryGirl.create(:bob_knight) }
+
+    it "returns customers whose lastnames begin with passed in letter" do
+      expect(Customer.filter_by_last_name('K')).to match_array([bob_knight])
+      expect(Customer.filter_by_last_name(nil)).to match_array([customer, bob_knight])
+    end
+  end
+
   describe "#full_name" do
     it "returns the customer's full name" do
       expect(customer.full_name).to eq("Matt Sroufe")

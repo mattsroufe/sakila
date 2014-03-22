@@ -1,5 +1,17 @@
 <h1>Customers</h1>
 
+<table style="border-collapse:collapse">
+  <tr>
+    <% ('A'..'Z').each do |letter| %>
+     <td style="text-align:center; padding: 5px; width:30px; border:1px solid"><%= link_to_unless params[:letter] == letter, letter, customers_path(:letter => letter) %></td>
+    <% end %>
+  </tr>
+</table>
+
+<br>
+
+<% if @customers.any? %>
+
 <table>
   <thead>
     <th>Id</th>
@@ -20,3 +32,9 @@
     <% end %>
   </tbody>
 </table>
+
+<% else %>
+
+<p>No records found.</p>
+
+<% end %>

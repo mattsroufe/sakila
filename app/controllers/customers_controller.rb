@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
 
   def index
-    @customers = Customer.limit(10)
+    @customers = Customer.filter_by_last_name(params[:letter]).limit(20)
   end
 
   def show
