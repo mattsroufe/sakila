@@ -1,5 +1,17 @@
 <h1>Actors</h1>
 
+<%= render :partial => 'shared/last_name_filter', :locals => { :path => actors_path } %>
+
+<% if @actors.any? %>
+
 <% @actors.each do |actor| %>
   <p><%= link_to actor.full_name, actor_path(actor) %></p>
+<% end %>
+
+<%= paginate @actors, :params => { :letter => params[:letter] } %>
+
+<% else %>
+
+<p>No records founds.</p>
+
 <% end %>
