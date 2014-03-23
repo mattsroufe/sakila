@@ -3,10 +3,11 @@ class FilmsController < ApplicationController
   def index
     if params[:category_id]
       @category = Category.find(params[:category_id])
-      @films = @category.films.filter_by('title', params[:letter]).page(params[:page]).per(5)
+      films = @category.films
     else
-      @films = Film.filter_by('title', params[:letter]).page(params[:page]).per(5)
+      films = Film.all
     end
+    @films = films.filter_by('title', params[:letter]).page(params[:page]).per(5)
   end
 
   def show
