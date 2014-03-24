@@ -39,4 +39,12 @@ describe Customer do
       expect(customer.address).to eq(address)
     end
   end
+
+  describe "#payments" do
+    let!(:payment) { FactoryGirl.create(:payment) }
+
+    it "returns the customer's payments" do
+      expect(customer.payments).to eq([payment])
+    end
+  end
 end
