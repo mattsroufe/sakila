@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321221617) do
+ActiveRecord::Schema.define(version: 20140324083050) do
 
   create_table "actor", primary_key: "actor_id", force: true do |t|
     t.string    "first_name", limit: 45, null: false
@@ -94,8 +94,6 @@ ActiveRecord::Schema.define(version: 20140321221617) do
     t.integer   "release_year"
     t.integer   "language_id",          limit: 1,                                         null: false
     t.integer   "original_language_id", limit: 1
-    t.integer   "rental_duration",      limit: 1,                         default: 3,     null: false
-    t.decimal   "rental_rate",                    precision: 4, scale: 2, default: 4.99,  null: false
     t.integer   "length",               limit: 2
     t.decimal   "replacement_cost",               precision: 5, scale: 2, default: 19.99, null: false
     t.string    "rating",               limit: 5,                         default: "G"
@@ -135,12 +133,14 @@ ActiveRecord::Schema.define(version: 20140321221617) do
   add_index "payments", ["staff_id"], name: "idx_fk_staff_id", using: :btree
 
   create_table "rentals", force: true do |t|
-    t.datetime  "rental_date",            null: false
-    t.integer   "inventory_id", limit: 3, null: false
-    t.integer   "customer_id",  limit: 2, null: false
+    t.datetime  "rental_date",                                                   null: false
+    t.integer   "inventory_id", limit: 3,                                        null: false
+    t.integer   "customer_id",  limit: 2,                                        null: false
     t.datetime  "return_date"
-    t.integer   "staff_id",     limit: 1, null: false
-    t.timestamp "updated_at",             null: false
+    t.integer   "staff_id",     limit: 1,                                        null: false
+    t.timestamp "updated_at",                                                    null: false
+    t.decimal   "rate",                   precision: 4, scale: 2, default: 4.99, null: false
+    t.integer   "duration",     limit: 1,                         default: 3,    null: false
   end
 
   add_index "rentals", ["customer_id"], name: "idx_fk_customer_id", using: :btree
