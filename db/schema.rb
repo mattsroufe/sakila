@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321221616) do
+ActiveRecord::Schema.define(version: 20140321221617) do
 
   create_table "actor", primary_key: "actor_id", force: true do |t|
     t.string    "first_name", limit: 45, null: false
@@ -121,18 +121,18 @@ ActiveRecord::Schema.define(version: 20140321221616) do
     t.timestamp "last_update",            null: false
   end
 
-  create_table "payment", primary_key: "payment_id", force: true do |t|
+  create_table "payments", force: true do |t|
     t.integer   "customer_id",  limit: 2,                         null: false
     t.integer   "staff_id",     limit: 1,                         null: false
     t.integer   "rental_id"
     t.decimal   "amount",                 precision: 5, scale: 2, null: false
     t.datetime  "payment_date",                                   null: false
-    t.timestamp "last_update",                                    null: false
+    t.timestamp "updated_at",                                     null: false
   end
 
-  add_index "payment", ["customer_id"], name: "idx_fk_customer_id", using: :btree
-  add_index "payment", ["rental_id"], name: "fk_payment_rental", using: :btree
-  add_index "payment", ["staff_id"], name: "idx_fk_staff_id", using: :btree
+  add_index "payments", ["customer_id"], name: "idx_fk_customer_id", using: :btree
+  add_index "payments", ["rental_id"], name: "fk_payment_rental", using: :btree
+  add_index "payments", ["staff_id"], name: "idx_fk_staff_id", using: :btree
 
   create_table "rentals", force: true do |t|
     t.datetime  "rental_date",            null: false
