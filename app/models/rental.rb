@@ -5,4 +5,8 @@ class Rental < ActiveRecord::Base
   has_one :film, :through => :inventory
   scope :unreturned, -> { where(:return_date => nil)}
   scope :returned, -> { where("return_date IS NOT NULL")}
+
+  def due_date
+    rental_date + duration.days
+  end
 end

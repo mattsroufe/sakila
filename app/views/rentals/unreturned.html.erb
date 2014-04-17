@@ -13,6 +13,7 @@
     <th>Title</th>
     <th>Customer</th>
     <th>Rental date</th>
+    <th>Due date</th>
   </thead>
   <tbody>
     <% @rentals.unreturned.each do |rental| %>
@@ -21,6 +22,7 @@
         <td><%= link_to rental.film, film_path(rental.film) %></td>
         <td><%= link_to rental.customer.full_name, customer_path(rental.customer) %></td>
         <td><%= rental.rental_date.to_formatted_s(:db) %></td>
+        <td><%= rental.due_date.to_formatted_s(:db) %></td>
       </tr>
     <% end %>
   </tbody>
