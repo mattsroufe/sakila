@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
 
   def index
-    @customers = Customer.filter_by('last_name', params[:letter]).page(params[:page])
+    @customers = Customer.filter(:last_name, params[:letter]).page(params[:page])
   end
 
   def show

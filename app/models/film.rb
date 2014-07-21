@@ -1,5 +1,5 @@
 class Film < ActiveRecord::Base
-  include LastNameFilter
+  include Filterable
   has_many :film_actors
   has_many :actors, :through => :film_actors
   has_one :inventory

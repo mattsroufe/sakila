@@ -1,5 +1,5 @@
 class Actor < ActiveRecord::Base
-  include LastNameFilter
+  include Filterable
   has_many :film_actors
   has_many :films, :through => :film_actors
 

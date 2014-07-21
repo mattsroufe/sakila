@@ -7,12 +7,12 @@ describe Actor do
     expect(actor).to be_valid
   end
 
-  describe ".filter_by" do
+  describe ".filter" do
     let!(:second_actor) { FactoryGirl.create(:second_actor) }
 
     it "returns customers whose lastnames begin with passed in letter" do
-      expect(Actor.filter_by('last_name', 'C')).to match_array([second_actor])
-      expect(Actor.filter_by('last_name', nil)).to match_array([actor, second_actor])
+      expect(Actor.filter('last_name', 'C')).to match_array([second_actor])
+      expect(Actor.filter('last_name', nil)).to match_array([actor, second_actor])
     end
   end
 

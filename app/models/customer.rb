@@ -1,5 +1,5 @@
 class Customer < ActiveRecord::Base
-  include LastNameFilter
+  include Filterable
   has_many :rentals
   has_many :payments
   belongs_to :address

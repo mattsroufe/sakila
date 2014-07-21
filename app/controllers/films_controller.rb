@@ -7,7 +7,7 @@ class FilmsController < ApplicationController
     else
       films = Film.all
     end
-    @films = films.filter_by('title', params[:letter]).page(params[:page]).per(5)
+    @films = films.filter(:title, params[:letter]).page(params[:page]).per(5)
   end
 
   def show
