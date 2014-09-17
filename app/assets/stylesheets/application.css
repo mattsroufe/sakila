@@ -12,3 +12,8 @@
  *= require_tree .
  *= require jquery.ui.all
  */
+
+.film-edit-links {
+  float: right;
+  font-size:70%;
+}
